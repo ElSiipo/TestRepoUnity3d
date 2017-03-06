@@ -17,8 +17,23 @@ public class FP_Shooting : MonoBehaviour {
 	void Update () {
         if (Input.GetButton("Fire1"))
         {
-            GameObject bullet = (GameObject)Instantiate(bullet_Prefab, cam.transform.position, cam.transform.rotation);
-            GetComponent<Rigidbody>().velocity = cam.transform.forward * bulletImpulse;
+            Shoot();
         }
 	}
+
+    private void Shoot()
+    {
+        //GameObject bullet = (GameObject)Instantiate(bullet_Prefab, cam.transform.position, cam.transform.rotation);
+        //GetComponent<Rigidbody>().velocity = cam.transform.forward * bulletImpulse;
+
+        var bullet = Instantiate(bullet_Prefab, cam.transform.forward, cam.transform.rotation);
+        GetComponent<Rigidbody>().velocity = cam.transform.forward * bulletImpulse;
+
+        
+
+        //bullet.rigidbody.AddForce(transform.forward * Speed);
+
+        //var spawnPoint : Transform;
+        //var bullet = Instantiate(bullet_Prefab, Spawn.)
+    }
 }
