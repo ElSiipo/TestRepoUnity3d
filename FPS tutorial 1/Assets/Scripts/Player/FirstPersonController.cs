@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent (typeof(CharacterController))]
-public class FirstPersonController : MonoBehaviour {
+[RequireComponent(typeof(CharacterController))]
+public class FirstPersonController : MonoBehaviour
+{
 
     private Rigidbody player;
-    
+
     public float movementSpeed = 10.0f;
     public float walkingSpeed = 5.0f;
     public float mouseSensitivity = 1f;
@@ -25,20 +26,21 @@ public class FirstPersonController : MonoBehaviour {
     CharacterController characterController;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
 
         standardCamHeight = Camera.main.transform.localPosition.y;
         crouchingCamHeight = standardCamHeight * 0.7F;
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         //Rotation
         RotatePlayer();
-        
+
         //Movement
         MovePlayer();
     }
@@ -77,7 +79,7 @@ public class FirstPersonController : MonoBehaviour {
         {
             verticalVelocity += Physics.gravity.y * Time.deltaTime;
         }
-        
+
         if (Input.GetButtonDown("Jump"))
         {
             Jump();
@@ -115,15 +117,17 @@ public class FirstPersonController : MonoBehaviour {
 
     private void Crouch()
     {
-        Camera.main.transform.localPosition = new Vector3(0, crouchingCamHeight, 0);
+        //Camera.main.transform.localPosition = new Vector3(0, crouchingCamHeight, 0);
         //characterController.transform.localPosition -= new Vector3(0, crouchingCamHeight, 0);
+        characterController.height = crouchingCamHeight;
         isCrouched = true;
     }
 
     private void StopCrouch()
     {
-        Camera.main.transform.localPosition = new Vector3(0, standardCamHeight, 0);
+        //Camera.main.transform.localPosition = new Vector3(0, standardCamHeight, 0);
         //characterController.transform.localPosition += new Vector3(0, standardCamHeight, 0);
+        characterController.height = standardCamHeight;
         isCrouched = false;
     }
 }
