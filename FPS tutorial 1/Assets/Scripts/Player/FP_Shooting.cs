@@ -27,9 +27,8 @@ public class FP_Shooting : MonoBehaviour {
 
     private void Shoot()
     {
-        var bullet = (GameObject)Instantiate(bullet_Prefab,
-                                            mainCam.transform.position + spawnDistance * mainCam.transform.forward,
-                                            mainCam.transform.rotation);
+        var bulletPossition = mainCam.transform.position + spawnDistance * mainCam.transform.forward;
+        var bullet = Instantiate(bullet_Prefab, bulletPossition, mainCam.transform.rotation);
 
         bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * bulletImpulse;
 
